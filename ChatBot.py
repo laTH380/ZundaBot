@@ -1,16 +1,16 @@
-from main import valueclass
+import valuecopy
 
 def main():
     while True:
-        if valueclass.getinputF():
+        if valuecopy.getinputF():
             print("ChatBot")
-            input = valueclass.getinput()
+            input = valuecopy.getinput()
             ###送る文を生成する処理
             ###chatbotへinputを送る処理
             chat_output="こんにちはずんだもんなのだ"
-            valueclass.setchat_output(chat_output)
-            valueclass.setinputF(0)
-            valueclass.setoutputF(1)
+            valuecopy.setchat_output(chat_output)
+            valuecopy.setinputF(0)
+            valuecopy.setoutputF(1)
 
 if __name__ == '__main__':
     main()

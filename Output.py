@@ -1,14 +1,14 @@
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from main import valueclass
+import valuecopy
 import voicebox
 import multiprocessing
 from playsound import playsound
 
 def main():
     while True:
-        if valueclass.getoutputF():
+        if valuecopy.getoutputF():
             print("Output")
             #感情推定
             #描画処理
@@ -22,8 +22,8 @@ def main():
             p.start()
             # input("press ENTER to stop playback")
             # p.terminate()
-            valueclass.setoutputF(0)
-            valueclass.setfinishF(1)
+            valuecopy.setoutputF(0)
+            valuecopy.setfinishF(1)
 
 
 if __name__ == '__main__':
