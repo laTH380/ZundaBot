@@ -3,14 +3,6 @@ from multiprocessing import Process, Value, Array, Manager
 import ctypes
 
 class value:
-    inputF = None
-    outputF = None
-    finishF = None
-
-    input = None
-    chat_output = None
-    
-
     def __init__(self):
         self.inputF = Value('i',0)#共有メモリによりプロセス間同期
         self.outputF = Value('i',0)
