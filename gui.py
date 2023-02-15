@@ -1,6 +1,6 @@
 import wx
-import value
-import toChatBot
+import ctypes
+from main import valueclass
 import pyautogui as pag
 scr_w,scr_h= pag.size()
 
@@ -112,16 +112,16 @@ class MyPanel(wx.Panel):#cssでいうbox(とはいえふつうはこれ一つで
     ######################################################
     #ボタンを押下等のイベント処理を、メソッドで記載
     ######################################################
-    def OnTextEnter(self, event):
+    def OnTextEnter(self, event):#入ロを受け付けた時
         text = self.text_box.GetValue()
         if text != "":
-            value.setinput(text)
+            valueclass.setinput(ctypes.c_wchar_p(text))
+            valueclass.setinputF(1)
             #print(str(self.green.GetTextColour()))
             #self.text_view.SetDefaultStyle(self.green)色がつくはずなのになぜかつかない
             self.text_view.AppendText(text+"\r\n")
             self.text_box.SetLabel("")
-            toChatBot.main()
-            self.text_view.AppendText(">" + value.getchat_output() +"\r\n")
+            self.text_view.AppendText(">" + valueclass.getchat_output() +"\r\n")
             #wx.MessageBox(text, 'Text Box Content', wx.OK | wx.ICON_INFORMATION)
 
 def main():
