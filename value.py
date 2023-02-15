@@ -25,7 +25,7 @@ class value:
         print(inspect.currentframe().f_back.f_code.co_filename)
         print(inspect.currentframe().f_back.f_lineno)
         self.inputF.value = int
-        print(self.inputF.value)
+        print(self.getinputF())
         
     def getinputF(self):
         return self.inputF.value
@@ -60,4 +60,3 @@ class value:
     # def make_view_text():
     #     value.view = value.view + "\r\n" + value.input
 
-valueclass = value()

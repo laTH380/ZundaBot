@@ -1,19 +1,9 @@
-from multiprocessing import Process, Manager, set_start_method
-import gui
-import ChatBot
-import Output
+import mainStream
 import value
-import main
-
-tmp = value.value()
 
 def main():
-    a = Process(target = gui.main)
-    b = Process(target = ChatBot.main)
-    c = Process(target = Output.main)
-    a.start()
-    b.start()
-    c.start()
+    mainStream.main()
 
 if __name__ == '__main__':
+    valueclass = value.value()
     main()

@@ -1,6 +1,7 @@
 import wx
 import ctypes
-from value import valueclass
+from main import valueclass
+import valuecopy
 import pyautogui as pag
 scr_w,scr_h= pag.size()
 

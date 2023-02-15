@@ -1,4 +1,4 @@
-from value import valueclass
+from main import valueclass
 
 def main():
     while True:
