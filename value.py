@@ -1,50 +1,43 @@
-import inspect
-from multiprocessing import Process, Value, Array, Manager
-import ctypes
-
 class value:
     def __init__(self):
-        self.inputF = Value('i',0)#共有メモリによりプロセス間同期
-        self.outputF = Value('i',0)
-        self.finishF = Value('i',0)
-        self.input = Value(ctypes.c_wchar_p, "Hello, World!")
-        self.chat_output = Value(ctypes.c_wchar_p, "output")
+        self.inputF = 0
+        self.outputF = 0
+        self.finishF = 0
+        self.input = "Hello, World!"
+        self.chat_output = "output"
 
 
     #view = "aaaa\r\ntt\na\na\naaaaaaaaa\naaaaaaa\na\naa\naa\naa\na\na\nf\nf\nf\nf\nf\nse\nr\nwd\ndf\ngf\nsdf"
 
     def setinputF(self,int):
-        print(inspect.currentframe().f_back.f_code.co_filename)
-        print(inspect.currentframe().f_back.f_lineno)
-        self.inputF.value = int
-        print(self.getinputF())
+        self.inputF = int
         
     def getinputF(self):
-        return self.inputF.value
+        return self.inputF
 
     def setoutputF(self,int):
-        self.outputF.value=int
+        self.outputF=int
         
     def getoutputF(self):
-        return self.outputF.value
+        return self.outputF
 
     def setfinishF(self,int):
-        self.finishF.value=int
+        self.finishF=int
         
     def getfinishF(self):
-        return self.finishF.value
+        return self.finishF
 
     def setinput(self,string):
         self.input = string
 
     def getinput(self):
-        return self.input.value
+        return self.input
 
     def setchat_output(self,string):
         self.chat_output = string
 
     def getchat_output(self):
-        return self.chat_output.value
+        return self.chat_output
 
     def getview():
         return value.view
