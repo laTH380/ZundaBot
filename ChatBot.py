@@ -1,9 +1,7 @@
-import ctypes
-from main import valueclass
+from value import valueclass
 
 def main():
     while True:
-        print(valueclass.getinputF())
         if valueclass.getinputF():
             print("ChatBot")
             input = valueclass.getinput()

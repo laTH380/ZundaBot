@@ -3,9 +3,6 @@ import gui
 import ChatBot
 import Output
 import value
-import main
-
-tmp = value.value()
 
 def main():
     a = Process(target = gui.main)
@@ -14,6 +11,3 @@ def main():
     a.start()
     b.start()
     c.start()
-
-if __name__ == '__main__':
-    main()

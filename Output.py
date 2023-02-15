@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from main import valueclass
+from value import valueclass
 import voicebox
 import multiprocessing
 from playsound import playsound

@@ -25,26 +25,28 @@ class value:
         print(inspect.currentframe().f_back.f_code.co_filename)
         print(inspect.currentframe().f_back.f_lineno)
         self.inputF.value = int
-        print("\n")
-        print(self.inputF)
+        print(self.inputF.value)
         
-    def getinputF():
-        return value.inputF
+    def getinputF(self):
+        return self.inputF.value
 
-    def setoutputF(int):
-        value.outputF=int
+    def setoutputF(self,int):
+        self.outputF.value=int
         
-    def getoutputF():
-        return value.outputF
+    def getoutputF(self):
+        return self.outputF.value
 
-    def setfinishF(int):
-        value.finishF=int
+    def setfinishF(self,int):
+        self.finishF.value=int
         
-    def getfinishF():
-        return value.finishF
+    def getfinishF(self):
+        return self.finishF.value
 
     def setinput(self,string):
         self.input = string
+
+    def getinput(self):
+        return self.input.value
 
     def setchat_output(self,string):
         self.chat_output = string
@@ -57,3 +59,5 @@ class value:
 
     # def make_view_text():
     #     value.view = value.view + "\r\n" + value.input
+
+valueclass = value()
