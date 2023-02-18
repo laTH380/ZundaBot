@@ -12,8 +12,7 @@ import value
 core = VoicevoxCore(open_jtalk_dict_dir=Path("open_jtalk_dic_utf_8-1.11"))
 speaker_id = 3
 
-def main():
-    text = valueclass.getchat_output()
+def main(text):
     if not core.is_model_loaded(speaker_id):  # モデルが読み込まれていない場合
         core.load_model(speaker_id)  # 指定したidのモデルを読み込む
     wave_bytes = core.tts(text, speaker_id)  # 音声合成を行う

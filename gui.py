@@ -50,10 +50,21 @@ class MyFrame(wx.Frame):#一番外側のウィンドウ
         # メニューのイベントリンクの登録
         self.Bind(wx.EVT_MENU, self.OnExit)
 
+        # 閉じるイベント
+        self.Bind(wx.EVT_CLOSE, self.frame_close)
+
     # メニューのイベントハンドラ
     def OnExit(self, event):
         # 終了作業
         self.Close()
+
+    def frame_close(self, event):
+        """ 閉じたときに発生するイベント """
+        #wx.MessageBox('イベント発生！', 'title')
+        valueclass.flag = False
+
+        #event.Skip()
+        self.Destroy()
 
 
 

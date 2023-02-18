@@ -1,7 +1,7 @@
 from main import valueclass
 
 def main():
-    while True:
+    while valueclass.flag:
         if valueclass.getinputF():
             print("ChatBot")
             input = valueclass.getinput()

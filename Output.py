@@ -5,15 +5,17 @@ from main import valueclass
 import voicebox
 import multiprocessing
 from playsound import playsound
+from main import valueclass
 
 def main():
-    while True:
+    while valueclass.flag:
         if valueclass.getoutputF():
             print("Output")
+            text = valueclass.getchat_output()
             #感情推定
             #描画処理
             ###voicevox処理
-            voicebox.main()
+            voicebox.main(text)
             path = os.path.dirname(__file__)
             #playsound(path + "\output\output.wav")
             #playsound("./output/output.wav")

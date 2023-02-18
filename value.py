@@ -1,5 +1,6 @@
 class value:
     def __init__(self):
+        self.flag = True
         self.inputF = 0
         self.outputF = 0
         self.finishF = 0
