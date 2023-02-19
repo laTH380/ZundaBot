@@ -7,7 +7,6 @@ sys.path.append('./voicebox')#カレントディレクトリがここでも一�
 sys.path.append('../')
 from pathlib import Path
 from voicevox_core import VoicevoxCore, METAS
-import value
 
 core = VoicevoxCore(open_jtalk_dict_dir=Path("open_jtalk_dic_utf_8-1.11"))
 speaker_id = 3

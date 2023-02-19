@@ -33,7 +33,7 @@ def generate_text(input):
         )
 
     output = tokenizer.decode(output_ids.tolist()[0])
-    print(output + "\n\n")
+    print(output + "\n")
     output2 = (output[leng:])
 
     pattern = r"AI:|私:|俺:|僕:|あなた:|相手:|<unk>|</s>|[UNK]"
@@ -41,6 +41,7 @@ def generate_text(input):
         match_position = [match.span() for match in re.finditer(pattern, output2)]
         first_match_position = match_position[0][0]
         edited_text = output2[:first_match_position]
+        print("\n" + edited_text)
         return edited_text
     else:
         return output2

@@ -2,7 +2,7 @@ import threading
 import gui
 import ChatBot
 import Output
-import sys
+import cui
 import debugpy
 from getpass import getpass
 
@@ -11,9 +11,8 @@ def main():
     c = threading.Thread(target = Output.main)
     b.start()
     c.start()
-    gui.main()
-    b.join()
-    c.join()
+    cui.main()
+    #gui.main()
 
 def debug():
     b = threading.Thread(target = ChatBot.main)

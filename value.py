@@ -5,7 +5,7 @@ class value:
         self.outputF = 1
         self.finishF = 1
         self.input = "一緒に遊びましょ"
-        self.chat_output = "ずんだもんなのだ"
+        self.chat_output = ""
         self.oldview = ""
         self.history = ""
         memorypath = "./memory.txt"
