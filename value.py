@@ -1,11 +1,20 @@
 class value:
     def __init__(self):
         self.flag = True
-        self.inputF = 0
-        self.outputF = 0
-        self.finishF = 0
-        self.input = "Hello, World!"
-        self.chat_output = "output"
+        self.inputF = 1
+        self.outputF = 1
+        self.finishF = 1
+        self.input = "一緒に遊びましょ"
+        self.chat_output = "ずんだもんなのだ"
+        self.oldview = ""
+        self.history = ""
+        memorypath = "./memory.txt"
+        with open(memorypath, "r", encoding='utf-8') as f:
+            i=1
+            for line in f:
+                if i>=2 and i<=17:
+                    self.history = self.history + line
+                i=i+1
 
 
     #view = "aaaa\r\ntt\na\na\naaaaaaaaa\naaaaaaa\na\naa\naa\naa\na\na\nf\nf\nf\nf\nf\nse\nr\nwd\ndf\ngf\nsdf"
@@ -40,8 +49,17 @@ class value:
     def getchat_output(self):
         return self.chat_output
 
-    def getview():
-        return value.view
+    def sethistory(self,string):
+        self.history = string
+
+    def gethistory(self):
+        return self.history
+    
+    def setoldview(self,string):
+        self.oldview = string
+
+    def getoldview(self):
+        return self.oldview
 
     # def make_view_text():
     #     value.view = value.view + "\r\n" + value.input

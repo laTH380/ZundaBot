@@ -1,14 +1,41 @@
 import wx
-import ctypes
+import time
 from main import valueclass
 import pyautogui as pag
+import threading
 scr_w,scr_h= pag.size()
+
+class firstFrame(wx.Frame):#起動画面
+    def __init__(self):
+        super().__init__(None, id=-1, title='wxPython',pos=(scr_w-500,0))
+        self.SetSize(500, scr_h*0.95)
+        bitmap = wx.Image('./image/zzm_zunmon_3002_logo.png').ConvertToBitmap()
+            #イメージコントロールを配置(ウィジェットは～コントロールという名前の関数で作る)
+        self.image = wx.StaticBitmap(parent=self,
+            bitmap=bitmap,
+            size=bitmap.GetSize()
+            )
+        box_sizer0 = wx.BoxSizer(wx.VERTICAL)
+            # 各ウィジェットをSizerにAddしていく
+        box_sizer0.Add(self.image, 1, wx.ALIGN_CENTER)
+        #タイマー作成
+        self.timer = wx.Timer(self,wx.ID_ANY)
+        self.Bind(wx.EVT_TIMER, self.change, self.timer)#一定時間ごとにself.update()を実行
+        self.timer.Start(30000)#千ミリ秒ごと
+        self.Show()
+
+    #更新関系
+    def change(self, event):
+        self.timer.Stop()
+        frame = MyFrame()
+        self.Destroy()
 
 class MyFrame(wx.Frame):#一番外側のウィンドウ
     def __init__(self):
-        super().__init__(None, id=-1, title='wxPython',pos=(scr_w-500,0))
+        super().__init__(None, id=0, title='wxPython',pos=(scr_w-500,0))
         panel = MyPanel(self)
         self.SetSize(500, scr_h*0.95)
+
         # メニュー作成
         self.create_menu_bar()
         self.Show()
@@ -64,14 +91,18 @@ class MyFrame(wx.Frame):#一番外側のウィンドウ
         valueclass.flag = False
 
         #event.Skip()
+        self.panel.timer.Stop()
         self.Destroy()
-
 
 
 class MyPanel(wx.Panel):#cssでいうbox(とはいえふつうはこれ一つでオッケー)
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         #self.green = wx.TextAttr(wx.Colour(100,30,200),wx.NullColour,wx.NullFont)
+        #タイマー作成
+        self.timer = wx.Timer(self,wx.ID_ANY)
+        self.Bind(wx.EVT_TIMER, self.update, self.timer)#一定時間ごとにself.update()を実行
+        self.timer.Start(10000)#千ミリ秒ごと
         ######################################
         #Sizer, ボタン等のウィジェットを記載(frame>panel>sixer>wijet)
         ######################################
@@ -119,25 +150,39 @@ class MyPanel(wx.Panel):#cssでいうbox(とはいえふつうはこれ一つで
             # Panleの規定Sizerに指定
         self.SetSizer(box_sizer1)
 
+    #更新関係
+    def onStartTimer(self,event):
+        output = valueclass.getchat_output()
+        if valueclass.oldview != output:
+            self.text_view.AppendText(">" + output +"\r\n")
+            valueclass.setoldview(output)
+            valueclass.setfinishF(0)
+
+    def update(self, event):
+        self.onStartTimer(event)
 
     ######################################################
     #ボタンを押下等のイベント処理を、メソッドで記載
     ######################################################
     def OnTextEnter(self, event):#入ロを受け付けた時
         text = self.text_box.GetValue()
-        if text != "":
-            valueclass.setinput(ctypes.c_wchar_p(text))
+        if text != "" and valueclass.getfinishF() == 0:
+            valueclass.setinput(text)
             valueclass.setinputF(1)
             #print(str(self.green.GetTextColour()))
             #self.text_view.SetDefaultStyle(self.green)色がつくはずなのになぜかつかない
             self.text_view.AppendText(text+"\r\n")
             self.text_box.SetLabel("")
-            self.text_view.AppendText(">" + valueclass.getchat_output() +"\r\n")
+            # w = threading.Thread(target=wait,args=(valueclass.getfinishF(),1))
+            # w.start()
+            # w.join()
+            # self.text_view.AppendText(">" + valueclass.getchat_output() +"\r\n")
+            valueclass.setfinishF(1)
             #wx.MessageBox(text, 'Text Box Content', wx.OK | wx.ICON_INFORMATION)
 
 def main():
     app = wx.App()
-    frame = MyFrame()
+    frame = firstFrame()
     app.MainLoop()
 
 if __name__ == '__main__':

@@ -1,0 +1,2 @@
+環境activate
+./zundabot_venv/Scripts/Activate.ps1
