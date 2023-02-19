@@ -6,7 +6,7 @@ def main():
     #初期処理
     inputtext = "こんにちは"
     input = valueclass.gethistory() + inputtext + "\n回答:"
-    output = Value('str',"")
+    output = Value('ctypes.c_wchar_p',"")
     process = Process(target=rinna.generate_text,args=(input))
     process.start()
     process.join()
