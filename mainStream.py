@@ -8,9 +8,9 @@ from getpass import getpass
 
 def main():
     b = threading.Thread(target = ChatBot.main)
-    c = threading.Thread(target = Output.main)
+    #c = threading.Thread(target = Output.main_kari)
     b.start()
-    c.start()
+    #c.start()
     cui.main()
     #gui.main()
 

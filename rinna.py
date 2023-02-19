@@ -19,7 +19,7 @@ def generate_text(input):
     with torch.no_grad():
         output_ids = model.generate(
             token_ids.to(model.device),
-            max_length=leng+500,
+            max_length=leng+100,
             min_length=50,
             temperature=0.5,
             do_sample=True,
@@ -36,12 +36,11 @@ def generate_text(input):
     print(output + "\n")
     output2 = (output[leng:])
 
-    pattern = r"AI:|私:|俺:|僕:|あなた:|相手:|<unk>|</s>|[UNK]"
+    pattern = r"AI:|私:|俺:|僕:|あなた:|相手:|<(>|<unk>|</s>|[UNK]"
     if re.search(pattern, output2) != None:
         match_position = [match.span() for match in re.finditer(pattern, output2)]
         first_match_position = match_position[0][0]
         edited_text = output2[:first_match_position]
-        print("\n" + edited_text)
         return edited_text
     else:
         return output2

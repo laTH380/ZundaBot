@@ -14,6 +14,7 @@ def main():
                 init = False
                 valueclass.setinputF(0)
                 valueclass.setfinishF(0)
+                print("準備完了。ここからお話しできます")
             else:
                 inputtext = valueclass.getinput()
                 input = valueclass.gethistory() + inputtext + "\n回答:"
@@ -23,6 +24,9 @@ def main():
                 valueclass.sethistory(input + chat_output + "\n質問:")
                 valueclass.setinputF(0)
                 valueclass.setoutputF(1)
+                #以下はcuiの現在のみ必要
+                valueclass.setoutputF(0)
+                valueclass.setfinishF(0)        
 
 if __name__ == '__main__':
     main()

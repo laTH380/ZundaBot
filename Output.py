@@ -11,7 +11,7 @@ def main():
     init = True
     while valueclass.flag:
         if valueclass.getoutputF():
-            print("Output")iz
+            print("Output")
             text = valueclass.getchat_output()
             if init:
                 text = "ずんだもんなのだ"
